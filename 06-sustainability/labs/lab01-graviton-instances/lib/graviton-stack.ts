@@ -43,13 +43,15 @@ export class GravitonStack extends TaggedStack {
       allowAllOutbound: true,
     });
 
-    // -- 왜: SSH 접속을 위해 22번 포트만 개방합니다.
+    // -- 왜: SSH 접속을 위해 22번 포트를 특정 IP에만 개방합니다.
     // 실무에서는 Session Manager를 사용하여 포트 개방 없이 접속하는 것이 더 안전합니다.
-    // 여기서는 학습 편의를 위해 SSH를 허용합니다.
+    // 질문: 0.0.0.0/0으로 SSH를 열면 어떤 보안 위험이 있을까요?
+    // SAA 포인트: Security Group은 최소 권한 원칙(Least Privilege)을 따라야 합니다.
+    const myIp = this.node.tryGetContext('myIp') || '127.0.0.1/32';
     securityGroup.addIngressRule(
-      ec2.Peer.anyIpv4(),
+      ec2.Peer.ipv4(myIp),
       ec2.Port.tcp(22),
-      '학습용 SSH 접근 허용 - 실무에서는 Session Manager 권장'
+      '학습용 SSH 접근 허용 - cdk deploy -c myIp=YOUR_IP/32 로 IP 지정 필요'
     );
 
     // -- 왜: Amazon Linux 2023 ARM 이미지를 사용합니다.

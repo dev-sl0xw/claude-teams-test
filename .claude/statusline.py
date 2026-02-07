@@ -37,7 +37,7 @@ def get_git_branch():
             timeout=1
         )
         return result.stdout.strip() if result.returncode == 0 else "no-branch"
-    except:
+    except Exception:
         return "no-branch"
 
 def get_project_name(workspace_path):
@@ -87,7 +87,7 @@ def get_rules_count(workspace_path):
         if os.path.exists(claude_dir):
             rules_files = [f for f in os.listdir(claude_dir) if f.startswith('rules') and f.endswith('.md')]
             return len(rules_files)
-    except:
+    except Exception:
         pass
     return 0
 
@@ -103,7 +103,7 @@ def get_mcps_count():
                 settings = json.load(f)
                 mcps = settings.get('mcpServers', {})
                 return len(mcps)
-    except:
+    except Exception:
         pass
     return 0
 
@@ -114,7 +114,7 @@ def get_hooks_count(workspace_path):
         if os.path.exists(claude_dir):
             hooks_files = [f for f in os.listdir(claude_dir) if f.startswith('hook-') and f.endswith('.sh')]
             return len(hooks_files)
-    except:
+    except Exception:
         pass
     return 0
 

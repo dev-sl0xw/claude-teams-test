@@ -28,3 +28,5 @@ new LambdaStack(app, generateStackName('dev', 'performance', 'LambdaStack'), {
   // 프로덕션에서는 env: { account: '123456789012', region: 'ap-northeast-2' }
   // 처럼 명시적으로 설정하여 환경 간 혼동을 방지합니다.
 });
+
+app.synth();

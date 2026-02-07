@@ -23,3 +23,5 @@ new CacheStack(app, generateStackName('dev', 'performance', 'CacheStack'), {
   environment: 'dev',
   pillar: 'performance-efficiency',
 });
+
+app.synth();

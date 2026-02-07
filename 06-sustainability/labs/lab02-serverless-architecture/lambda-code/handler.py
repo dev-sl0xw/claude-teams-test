@@ -55,11 +55,18 @@ def lambda_handler(event, context):
             return delete_item(item_id)
         else:
             return response(400, {"error": "지원하지 않는 요청입니다"})
+    except json.JSONDecodeError as e:
+        return response(400, {"error": f"잘못된 JSON 형식입니다: {str(e)}"})
     except ClientError as e:
-        # -- 왜: AWS 서비스 에러를 별도로 처리합니다.
-        # DynamoDB 요청 제한(ThrottlingException) 등을 구분하여 적절히 응답합니다.
-        return response(500, {"error": f"AWS 서비스 오류: {e.response['Error']['Message']}"})
+        # -- 왜: AWS 서비스 에러를 구분하여 적절한 HTTP 상태코드로 응답합니다.
+        error_code = e.response["Error"]["Code"]
+        error_message = e.response["Error"]["Message"]
+        print(f"ClientError: {error_code} - {error_message}")
+        if error_code == "ConditionalCheckFailedException":
+            return response(404, {"error": "아이템을 찾을 수 없습니다"})
+        return response(500, {"error": f"AWS 서비스 오류: {error_message}"})
     except Exception as e:
+        print(f"Unhandled error: {type(e).__name__} - {str(e)}")
         return response(500, {"error": f"서버 오류: {str(e)}"})
 
 
@@ -72,7 +79,7 @@ def create_item(event):
     서버에서 유일한 ID를 보장하면 중복 데이터를 방지하여
     불필요한 스토리지 사용(= 에너지 낭비)을 줄입니다.
     """
-    body = json.loads(event.get("body", "{}"))
+    body = json.loads(event.get("body") or "{}")
 
     item = {
         "id": str(uuid.uuid4()),
@@ -134,7 +141,7 @@ def update_item(item_id, event):
     전체 아이템을 put_item으로 덮어쓰면 변경되지 않은 데이터도
     다시 쓰므로 에너지가 낭비됩니다.
     """
-    body = json.loads(event.get("body", "{}"))
+    body = json.loads(event.get("body") or "{}")
 
     result = table.update_item(
         Key={"id": item_id},

@@ -2,6 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as logs from 'aws-cdk-lib/aws-logs';
+import * as path from 'path';
 import { Construct } from 'constructs';
 import { TaggedStack, TaggedStackProps } from '../../../shared/constructs/tagged-stack';
 import { generateResourceName } from '../../../shared/utils/naming';
@@ -58,7 +59,7 @@ export class LambdaStack extends TaggedStack {
       //   1. Lambda 코드만 독립적으로 테스트 가능
       //   2. 배포 패키지 크기를 최소화하여 콜드 스타트 단축
       //   3. 코드 리뷰 시 인프라와 로직을 분리하여 검토
-      code: lambda.Code.fromAsset('../../../04-performance-efficiency/labs/lab01-lambda-functions/lambda-code'),
+      code: lambda.Code.fromAsset(path.join(__dirname, '../lambda-code')),
       memorySize: 256,
       // -- 왜: 타임아웃을 30초로 설정하는 이유
       // API Gateway의 최대 타임아웃은 29초입니다.
