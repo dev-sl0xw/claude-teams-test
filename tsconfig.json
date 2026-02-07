@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["ES2022"],
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["shared/*"]
+    },
+    "typeRoots": ["./node_modules/@types"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "shared/**/*.ts",
+    "00-foundations/**/*.ts",
+    "01-operational-excellence/**/*.ts",
+    "02-security/**/*.ts",
+    "03-reliability/**/*.ts",
+    "04-performance-efficiency/**/*.ts",
+    "05-cost-optimization/**/*.ts",
+    "06-sustainability/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "cdk.out"
+  ]
+}

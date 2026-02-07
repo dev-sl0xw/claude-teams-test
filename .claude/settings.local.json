@@ -1,4 +1,9 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:registry.npmjs.org)"
+    ]
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true

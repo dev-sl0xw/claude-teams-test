@@ -22,6 +22,9 @@ __pycache__/
 .venv/
 venv/
 
+# CDK
+cdk.out/
+
 # Logs & temp
 *.log
 tmp/
