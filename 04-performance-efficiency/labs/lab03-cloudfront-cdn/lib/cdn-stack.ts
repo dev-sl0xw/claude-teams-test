@@ -15,7 +15,7 @@ import { generateResourceName } from '../../../shared/utils/naming';
  * 미국, 유럽 사용자는 수백 ms의 지연시간을 경험합니다.
  *
  * CloudFront를 사용하면:
- *   1. 전 세계 450+ 엣지 로케이션에서 콘텐츠 캐싱
+ *   1. 전 세계 수백 곳의 엣지 로케이션에서 콘텐츠 캐싱
  *   2. 사용자에게 가장 가까운 위치에서 응답 (지연시간 최소화)
  *   3. S3 직접 접근을 차단하여 보안 강화 (OAC)
  *   4. DDoS 보호 (AWS Shield 기본 포함)

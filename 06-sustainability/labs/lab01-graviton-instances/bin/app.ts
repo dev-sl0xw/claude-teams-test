@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { GravitonStack } from '../lib/graviton-stack';
+import { generateStackName } from '../../../shared/utils/naming';
 
 /**
  * -- 왜: CDK 앱의 진입점입니다.
@@ -17,7 +18,7 @@ const app = new cdk.App();
 // 하드코딩된 값 대신 환경 변수를 사용하면 같은 코드로 다른 환경에 배포할 수 있습니다.
 const environment = app.node.tryGetContext('environment') || 'dev';
 
-new GravitonStack(app, 'SustainabilityGravitonStack', {
+new GravitonStack(app, generateStackName(environment, 'sustainability', 'GravitonStack'), {
   projectName: 'wa-handson',
   environment,
   pillar: 'sustainability',

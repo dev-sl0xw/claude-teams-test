@@ -15,13 +15,13 @@ import { generateStackName } from '../../../shared/utils/naming';
  *   3. 롤백이 독립적으로 가능합니다
  *
  * 질문: CloudFront 배포 업데이트에 왜 15~20분이 걸릴까요?
- *        전 세계 450+ 엣지 로케이션에 설정을 전파해야 하기 때문입니다.
+ *        전 세계 수백 곳의 엣지 로케이션에 설정을 전파해야 하기 때문입니다.
  */
 
 const app = new cdk.App();
 
 new CdnStack(app, generateStackName('dev', 'performance', 'CdnStack'), {
-  projectName: 'well-architected-handson',
+  projectName: 'wa-handson',
   environment: 'dev',
   pillar: 'performance-efficiency',
 });

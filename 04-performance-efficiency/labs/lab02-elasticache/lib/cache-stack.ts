@@ -113,11 +113,11 @@ export class CacheStack extends TaggedStack {
       numCacheClusters: 1,
       cacheSubnetGroupName: subnetGroup.cacheSubnetGroupName,
       securityGroupIds: [this.redisSecurityGroup.securityGroupId],
-      // -- 왜: 전송 중 암호화(TLS)를 비활성화하는 이유 (학습 환경)
-      // TLS를 활성화하면 모든 클라이언트가 TLS 연결을 사용해야 합니다.
-      // 학습 환경에서는 단순성을 위해 비활성화하지만,
-      // 프로덕션에서는 반드시 활성화해야 합니다 (보안 Pillar).
-      transitEncryptionEnabled: false,
+      // -- 왜: 전송 중 암호화(TLS)를 활성화하는 이유
+      // Well-Architected 보안 Pillar: 전송 중인 데이터는 항상 암호화해야 합니다.
+      // 클라이언트 연결 시 TLS를 사용해야 하지만, 이는 보안의 기본입니다.
+      // 질문: TLS 없이 Redis를 운영하면 VPC 내부에서도 어떤 위험이 있을까요?
+      transitEncryptionEnabled: true,
       // -- 왜: 저장 중 암호화를 활성화하는 이유
       // 캐시 데이터에도 민감 정보가 포함될 수 있습니다.
       // Redis 스냅샷이 유출되더라도 데이터를 보호합니다.

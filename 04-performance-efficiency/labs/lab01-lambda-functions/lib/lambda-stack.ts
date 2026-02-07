@@ -62,8 +62,8 @@ export class LambdaStack extends TaggedStack {
       code: lambda.Code.fromAsset(path.join(__dirname, '../lambda-code')),
       memorySize: 256,
       // -- 왜: 타임아웃을 30초로 설정하는 이유
-      // API Gateway의 최대 타임아웃은 29초입니다.
-      // Lambda 타임아웃이 이보다 길면 API Gateway가 먼저 503을 반환합니다.
+      // API Gateway REST API의 기본 통합 타임아웃은 29초입니다 (최대 300초까지 설정 가능).
+      // Lambda 타임아웃이 이보다 길면 API Gateway가 먼저 504 Gateway Timeout을 반환합니다.
       // 짧은 타임아웃을 설정하면 무한 루프 등의 비용 폭탄을 방지합니다.
       timeout: cdk.Duration.seconds(30),
       // -- 왜: 환경 변수로 환경 정보를 전달하는 이유

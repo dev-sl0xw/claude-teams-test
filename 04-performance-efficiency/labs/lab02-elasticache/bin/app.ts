@@ -19,7 +19,7 @@ import { generateStackName } from '../../../shared/utils/naming';
 const app = new cdk.App();
 
 new CacheStack(app, generateStackName('dev', 'performance', 'CacheStack'), {
-  projectName: 'well-architected-handson',
+  projectName: 'wa-handson',
   environment: 'dev',
   pillar: 'performance-efficiency',
 });

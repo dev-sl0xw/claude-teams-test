@@ -80,8 +80,13 @@ def get_account_id(session: Optional[boto3.Session] = None) -> str:
     """
     if session is None:
         session = get_session()
-    sts = session.client("sts")
-    return sts.get_caller_identity()["Account"]
+    try:
+        sts = session.client("sts")
+        return sts.get_caller_identity()["Account"]
+    except ClientError as e:
+        print(f"⚠️  계정 ID 조회 실패: {e}")
+        print("   자격 증명이 만료되었거나 STS 권한이 없을 수 있습니다.")
+        raise
 
 
 def check_service_availability(

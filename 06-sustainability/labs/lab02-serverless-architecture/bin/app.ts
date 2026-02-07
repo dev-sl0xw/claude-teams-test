@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { ServerlessStack } from '../lib/serverless-stack';
+import { generateStackName } from '../../../shared/utils/naming';
 
 /**
  * -- 왜: 서버리스 아키텍처 Lab의 CDK 앱 진입점입니다.
@@ -19,7 +20,7 @@ const app = new cdk.App();
 
 const environment = app.node.tryGetContext('environment') || 'dev';
 
-new ServerlessStack(app, 'SustainabilityServerlessStack', {
+new ServerlessStack(app, generateStackName(environment, 'sustainability', 'ServerlessStack'), {
   projectName: 'wa-handson',
   environment,
   pillar: 'sustainability',

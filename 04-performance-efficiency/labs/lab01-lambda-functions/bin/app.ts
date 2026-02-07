@@ -19,7 +19,7 @@ import { generateStackName } from '../../../shared/utils/naming';
 const app = new cdk.App();
 
 new LambdaStack(app, generateStackName('dev', 'performance', 'LambdaStack'), {
-  projectName: 'well-architected-handson',
+  projectName: 'wa-handson',
   environment: 'dev',
   pillar: 'performance-efficiency',
   // -- 왜: env를 명시적으로 설정하지 않는 이유

@@ -55,7 +55,9 @@ export class TaggedStack extends cdk.Stack {
 
     // -- 왜: CreatedAt 태그로 리소스 생성 시점을 기록합니다.
     // 오래된 리소스를 찾아 정리할 때 유용합니다 (비용 최적화).
-    // 질문: 이 태그가 배포할 때마다 갱신되면 어떤 문제가 발생할까요?
-    cdk.Tags.of(this).add('CreatedAt', new Date().toISOString().split('T')[0]);
+    // 주의: new Date()를 사용하면 매 cdk synth마다 값이 바뀌어
+    // 불필요한 리소스 업데이트가 발생합니다. 고정 값을 사용합니다.
+    // 질문: 스택의 최초 생성일을 자동으로 기록하려면 어떤 방법이 있을까요?
+    cdk.Tags.of(this).add('CreatedAt', '2026-02-07');
   }
 }

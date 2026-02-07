@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node bin/app.ts",
+  "app": "echo 'ERROR: 개별 랩의 --app 옵션을 사용하세요. 예: npx cdk synth --app \"npx ts-node 04-performance-efficiency/labs/lab01-lambda-functions/bin/app.ts\"'",
   "watch": {
     "include": [
       "**"

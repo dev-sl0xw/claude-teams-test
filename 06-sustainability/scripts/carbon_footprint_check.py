@@ -154,7 +154,12 @@ def check_ec2_utilization(session):
                 else:
                     avg_cpu = None
 
-            except ClientError:
+            except ClientError as e:
+                error_code = e.response["Error"]["Code"]
+                if error_code in ("AccessDeniedException", "AccessDenied"):
+                    print(f"    ⚠ CloudWatch 권한 부족: cloudwatch:GetMetricStatistics 권한이 필요합니다.")
+                else:
+                    print(f"    ⚠ CloudWatch 메트릭 조회 실패: {error_code}")
                 avg_cpu = None
 
             # 인스턴스 이름 태그 찾기
