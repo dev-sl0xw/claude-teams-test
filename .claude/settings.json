@@ -1,0 +1,13 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "python3 /Volumes/data/claude-vibe-workspace/claude-teams-test/.claude/statusline.py"
+  },
+  "permissions": {
+    "allow": ["Edit(/.claude/**)", "Bash(gh pr merge:)", "Bash(gh pr view:)"]
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "teammateMode": "tmux"
+}

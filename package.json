@@ -1,0 +1,34 @@
+{
+  "name": "aws-well-architected-cdk-handson",
+  "version": "1.0.0",
+  "description": "AWS Well-Architected Framework 6대 요소를 CDK로 학습하는 핸즈온 프로젝트",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy",
+    "destroy": "cdk destroy",
+    "diff": "cdk diff",
+    "check": "tsc --noEmit"
+  },
+  "keywords": [
+    "aws",
+    "cdk",
+    "well-architected",
+    "saa",
+    "hands-on"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "~5.7.0",
+    "ts-node": "^10.9.2",
+    "@types/node": "^22.0.0",
+    "aws-cdk": "^2.175.0"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.175.0",
+    "constructs": "^10.4.0"
+  }
+}
